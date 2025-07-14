@@ -34,6 +34,11 @@ export default withBundleAnalyzer({
       dirname,
       'node_modules/react-dom'
     )
+    
+    // Exclude sharp from the bundle for Cloudflare Workers
+    config.externals = config.externals || []
+    config.externals.push('sharp')
+    
     return config
   },
 

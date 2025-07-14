@@ -1,5 +1,3 @@
-import ky from 'ky'
-import lqip from 'lqip-modern'
 import {
   type ExtendedRecordMap,
   type PreviewImage,
@@ -53,14 +51,12 @@ async function createPreviewImage(
       console.warn(`redis error get "${cacheKey}"`, err.message)
     }
 
-    const body = await ky(url).arrayBuffer()
-    const result = await lqip(body)
-    console.log('lqip', { ...result.metadata, url, cacheKey })
-
+    // Simple placeholder implementation without Sharp/lqip-modern
+    // For Cloudflare Workers compatibility
     const previewImage = {
-      originalWidth: result.metadata.originalWidth,
-      originalHeight: result.metadata.originalHeight,
-      dataURIBase64: result.metadata.dataURIBase64
+      originalWidth: 800,
+      originalHeight: 600,
+      dataURIBase64: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDgwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRjVGNUY1Ii8+Cjwvc3ZnPg=='
     }
 
     try {

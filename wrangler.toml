@@ -1,0 +1,7 @@
+name = "careers-kcs"
+compatibility_date = "2025-07-14"
+compatibility_flags = ["nodejs_compat"]
+main = ".open-next/worker.js"
+
+[assets]
+directory = ".open-next/assets"

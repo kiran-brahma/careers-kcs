@@ -15,7 +15,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "vercel deploy",
     "deps:upgrade": "[ -z $GITHUB_ACTIONS ] && pnpm up -L notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
     "deps:link": "[ -z $GITHUB_ACTIONS ] && run-s deps:link:* || echo 'Skipping deps:update on CI'",
     "deps:unlink": "[ -z $GITHUB_ACTIONS ] && pnpm add notion-client notion-types notion-utils react-notion-x || echo 'Skipping deps:update on CI'",
@@ -28,18 +27,21 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build",
     "test": "run-p test:*",
     "test:lint": "eslint .",
-    "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check"
+    "test:prettier": "prettier '**/*.{js,jsx,ts,tsx}' --check",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@fisch0920/use-dark-mode": "^2.4.0",
     "@keyvhq/core": "^1.6.9",
     "@keyvhq/redis": "^1.6.10",
+    "@opennextjs/cloudflare": "^1.5.1",
     "@react-icons/all-files": "^4.1.0",
     "classnames": "^2.5.1",
     "expiry-map": "^2.0.0",
     "fathom-client": "^3.4.1",
     "ky": "^1.8.1",
-    "lqip-modern": "^2.2.1",
     "next": "^15.3.3",
     "notion-client": "^7.4.2",
     "notion-types": "^7.4.2",
@@ -68,7 +70,8 @@
     "eslint": "^9.28.0",
     "npm-run-all2": "^8.0.4",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "wrangler": "^4.24.3"
   },
   "overrides": {
     "cacheable-request": {
