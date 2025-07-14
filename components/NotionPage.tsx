@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { type PageBlock } from 'notion-types'
 import { formatDate, getBlockTitle, getPageProperty } from 'notion-utils'
 import * as React from 'react'
-import BodyClassName from 'react-body-classname'
+import BodyClassName = require('react-body-classname')
 import {
   type NotionComponents,
   NotionRenderer,
@@ -327,7 +327,6 @@ export function NotionPage({
         footer={footer}
       />
 
-      <GitHubShareButton />
     </>
   )
 }
